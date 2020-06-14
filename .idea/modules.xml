@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ssm_dao_66/ssm_dao_66.iml" filepath="$PROJECT_DIR$/ssm_dao_66/ssm_dao_66.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_domain_66/ssm_domain_66.iml" filepath="$PROJECT_DIR$/ssm_domain_66/ssm_domain_66.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_service_66/ssm_service_66.iml" filepath="$PROJECT_DIR$/ssm_service_66/ssm_service_66.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_utils/ssm_utils.iml" filepath="$PROJECT_DIR$/ssm_utils/ssm_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ssm_web_66/ssm_web_66.iml" filepath="$PROJECT_DIR$/ssm_web_66/ssm_web_66.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tuzai.iml" filepath="$PROJECT_DIR$/tuzai.iml" />
+    </modules>
+  </component>
+</project>

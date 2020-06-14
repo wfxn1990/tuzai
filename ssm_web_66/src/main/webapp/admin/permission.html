@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>权限管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入angular的js -->
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+    <!-- 引入分页相关的JS和CSS -->
+    <script type="text/javascript" src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+
+    <script type="text/javascript" src="../js/base_pagination.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/permissionController.js"></script>
+    <script type="text/javascript" src="../js/service/permissionService.js"></script>
+
+    <script src="../plugins/raphael/raphael-min.js"></script>
+    <script src="../plugins/morris/morris.min.js"></script>
+    <script src="../plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script src="../plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../plugins/knob/jquery.knob.js"></script>
+    <script src="../plugins/daterangepicker/moment.min.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="../plugins/daterangepicker/daterangepicker.zh-CN.js"></script>
+    <script src="../plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script
+            src="../plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+    <script
+            src="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="../plugins/fastclick/fastclick.js"></script>
+    <script src="../plugins/iCheck/icheck.min.js"></script>
+    <script src="../plugins/adminLTE/js/app.min.js"></script>
+    <script src="../plugins/treeTable/jquery.treetable.js"></script>
+    <script src="../plugins/select2/select2.full.min.js"></script>
+    <script src="../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script
+            src="../plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
+    <script src="../plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+    <script
+            src="../plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js"></script>
+    <script src="../plugins/bootstrap-markdown/js/markdown.js"></script>
+    <script src="../plugins/bootstrap-markdown/js/to-markdown.js"></script>
+    <script src="../plugins/ckeditor/ckeditor.js"></script>
+    <script src="../plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="../plugins/flot/jquery.flot.min.js"></script>
+    <script src="../plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="../plugins/flot/jquery.flot.pie.min.js"></script>
+    <script src="../plugins/flot/jquery.flot.categories.min.js"></script>
+    <script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
+    <script src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
+
+    <link rel="stylesheet"
+          href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="../plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet"
+          href="../plugins/iCheck/square/blue.css">
+    <link rel="stylesheet"
+          href="../plugins/morris/morris.css">
+    <link rel="stylesheet"
+          href="../plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <link rel="stylesheet"
+          href="../plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet"
+          href="../plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet"
+          href="../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link rel="stylesheet"
+          href="../plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet"
+          href="../plugins/treeTable/jquery.treetable.css">
+    <link rel="stylesheet"
+          href="../plugins/treeTable/jquery.treetable.theme.default.css">
+    <link rel="stylesheet"
+          href="../plugins/select2/select2.css">
+    <link rel="stylesheet"
+          href="../plugins/colorpicker/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet"
+          href="../plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet"
+          href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet"
+          href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet"
+          href="../css/style.css">
+    <link rel="stylesheet"
+          href="../plugins/ionslider/ion.rangeSlider.css">
+    <link rel="stylesheet"
+          href="../plugins/ionslider/ion.rangeSlider.skinNice.css">
+    <link rel="stylesheet"
+          href="../plugins/bootstrap-slider/slider.css">
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="permissionController" ng-init="reloadList()" >
+<!-- .box-body -->
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">权限管理</h3>
+    </div>
+
+    <div class="box-body">
+
+        <!-- 数据表格 -->
+        <div class="table-box">
+
+            <!--工具栏-->
+            <div class="pull-left">
+                <div class="form-group form-inline">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
+                        <button type="button" class="btn btn-default" title="删除" ng-click="del()"><i class="fa fa-trash-o"></i> 删除</button>
+                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-tools pull-right">
+                <div class="has-feedback">
+                    公司名称：<input>
+                    店铺名称： <input>
+                    <button class="btn btn-default">查询</button>
+                </div>
+            </div>
+            <!--工具栏/-->
+
+            <!--数据列表-->
+            <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+                <thead>
+                <tr>
+                    <th class="" style="padding-right:0px">
+                        <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                    </th>
+
+                    <th class="sorting_asc">权限ID</th>
+                    <th class="sorting">权限名称 </th>
+                    <th class="sorting">URL</th>
+                    <th class="text-center">父权限</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="entity in list">
+                    <td><input type="checkbox" ng-click="updateSelection($event,entity.id)" ></td>
+                    <td>{{entity.id}}</td>
+                    <td>{{entity.permissionName}}</td>
+                    <td>{{entity.url}}</td>
+                    <td>{{entity.pid}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn bg-olive btn-xs" ng-click="findById(entity.id)" data-toggle="modal" data-target="#editModal"  >修改</button>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn bg-olive btn-xs" ng-click="findById(entity.id)" data-toggle="modal" data-target="#editModa2"  >添加权限</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <!--数据列表/-->
+        </div>
+        <tm-pagination conf="paginationConf"></tm-pagination>
+        <!-- 数据表格 /-->
+    </div>
+    <!-- /.box-body -->
+
+    <!-- 商家详情 -->
+    <form>
+    <div class="modal fade" id="editModal" tabindex="-1" permission="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                    </button>
+                    <h3 id="myModalLabel">用户新增</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped" width="800px">
+
+                        <tr>
+                            <td>用户名称</td>
+                            <td><input ng-model="entity[1]" class="form-control" placeholder="用户名称"></td>
+                        </tr>
+                        <tr>
+                            <td>email</td>
+                            <td><input ng-model="entity[2]"  class="form-control" placeholder="邮箱"></td>
+                        </tr>
+                        <tr>
+                            <td>密码</td>
+                            <td><input ng-model="entity[3]" class="form-control" placeholder="密码"></td>
+                        </tr>
+                        <tr>
+                            <td>电话号码</td>
+                            <td><input ng-model="entity[4]" class="form-control" placeholder="电话号码"></td>
+                        </tr>
+                        <tr>
+                            <td>状态</td>
+                            <td><input ng-model="entity[5]" class="form-control" placeholder="状态"></td>
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save();">保存</button>
+                    <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <!-- 用户添加角色 -->
+    <form>
+        <div class="modal fade" id="editModa2" tabindex="-1" permission="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h3 id="myModalLabel">角色新增</h3>
+                    </div>
+                    <div class="modal-body">
+                        <!--<tbody>-->
+
+                        <div class="tab-pane" id="tab-treetable">
+                            <table id="collapse-table"
+                                   class="table table-bordered table-hover dataTable">
+                                <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>描述</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr data-tt-id="0">
+                                    <td colspan="2" >{{entity[1]}}</td>
+                                </tr>
+                                <!--<tr ng-repeat="permission in entity[6]"  data-tt-id="{{permission.id}}" data-tt-parent-id="0">
+                                    <td>{{permission.permissionName}}</td>
+                                    <td>{{permission.permissionDesc }}</td>
+                                </tr>-->
+
+                                <tr ng-repeat="arr2 in arr">
+
+                                    <td><input type="checkbox" class="aaa" on-finish-render-filters="completeRepeat"></td>
+                                    <td >{{arr2.permissionName}}</td>
+                                    <td >{{arr2.permissionDesc}}</td>
+                                </tr>
+
+                                <!--<tr >
+                                    <td >{{arr[1].permissionName}}</td>
+                                    <td >{{arr[1].permissionDesc}}</td>
+                                </tr>-->
+                            </table>
+
+                        </div>
+
+
+
+                       <!-- </tbody>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="save();">保存</button>
+                        <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+
+</html>
